@@ -19,4 +19,22 @@ public class UsuarioServiceImpl implements IUsuarioService{
     public List<Usuario> findAll() {
         return (List<Usuario>) usuarioDao.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findById(int idUsuario) {
+        return usuarioDao.findById(idUsuario).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public Usuario save(Usuario usuario) {
+        return usuarioDao.save(usuario);
+    }
+
+    @Override
+    @Transactional
+    public void delete(int idUsuario) {
+        usuarioDao.deleteById(idUsuario);
+    }
 }

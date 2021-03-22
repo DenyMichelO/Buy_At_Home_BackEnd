@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface IUsuarioService {
     public List<Usuario> findAll();
+
+    public Usuario findById(int idUsuario);
+
+    public Usuario save (Usuario usuario);
+
+    public void delete(int idUsuario);
 }

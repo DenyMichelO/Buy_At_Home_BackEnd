@@ -19,4 +19,22 @@ public class RolServiceImpl implements IRolService{
     public List<Rol> findAll() {
         return (List<Rol>) rolDao.findAll();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Rol findById(int idRol) {
+        return rolDao.findById(idRol).orElse(null);
+    }
+
+    @Override
+    @Transactional
+    public Rol save(Rol rol) {
+        return rolDao.save(rol);
+    }
+
+    @Override
+    @Transactional
+    public void delete(int idRol) {
+        rolDao.deleteById(idRol);
+    }
 }

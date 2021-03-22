@@ -6,4 +6,10 @@ import java.util.List;
 
 public interface IRolService {
     public List<Rol> findAll();
+
+    public Rol findById(int idRol);
+
+    public Rol save (Rol rol);
+
+    public void delete(int idRol);
 }

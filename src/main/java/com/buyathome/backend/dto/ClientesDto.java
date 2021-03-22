@@ -2,6 +2,8 @@ package com.buyathome.backend.dto;
 
 import com.buyathome.backend.domain.Clientes;
 
+import java.util.Date;
+
 public class ClientesDto {
 
     private Integer id_cliente;
