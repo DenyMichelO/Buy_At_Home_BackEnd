@@ -3,7 +3,15 @@ package com.buyathome.backend.models.entity;
 
 
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,18 +22,25 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCliente;
-
+    @Column(unique = true)
+    @NotBlank
+    @Email(message = "El correo electrónico debe ser válido")
     private String correo;
+    @Size(min = 8, message="La contraseña debe tener 8 caracteres como minimo")
+    @Pattern(regexp = "^[a-zA-Z]\\w{3,14}$", message = "Debe contener letras seguidos de numeros")
     private String password;
     private Integer estado;
+    @NotBlank(message="Dato obligatorio")
     private String nombres;
+    @NotBlank(message="Dato obligatorio")
     private String apellidos;
-
-    @Column(name = "fecha_nacimiento")
-    @Temporal(TemporalType.DATE)
+    @Pattern(regexp="^[0-9]{2}-[0-9]{2}-[0-9]{4}$",message="El formato de la fecha de nacimiento es incorrecto")
     private Date fechaNacimiento;
-
+    @NotBlank (message = "Dato obligatorio")
+    @Min(600000000)
+    @Max(799999999)
     private String telefono;
+    @NotBlank(message = "Dato obligatorio")
     private String direccion;
 
     public Integer getIdCliente() {

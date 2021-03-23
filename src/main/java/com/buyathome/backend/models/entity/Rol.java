@@ -1,5 +1,7 @@
 package com.buyathome.backend.models.entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,7 +12,7 @@ public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRol;
-
+    @NotEmpty(message = "Elegir un rol")
     private String rol;
 
     public Integer getIdRol() {

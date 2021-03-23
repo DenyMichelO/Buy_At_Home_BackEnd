@@ -1,7 +1,14 @@
 package com.buyathome.backend.models.entity;
 
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -14,13 +21,26 @@ public class Usuario implements Serializable {
 
     @Column(name = "id_rol")
     private Integer idRol;
+
+    @Pattern(regexp = "[a-z]+", message="El nombre de usuario solo puede contener letras minusculas")
     private String usuario;
+    @Size(min = 8, message="La contraseña debe tener 8 caracteres como minimo")
+    @Pattern(regexp = "^[a-zA-Z]\\w{3,14}$", message = "Debe contener letras seguidos de numeros")
     private String password;
     private Integer estado;
+    @NotBlank(message="Dato obligatorio")
     private String nombres;
+    @NotBlank(message="Dato obligatorio")
     private String apellidos;
+    @Column(unique = true)
+    @NotBlank
+    @Email(message = "El correo electrónico debe ser válido")
     private String email;
+    @NotBlank(message="Dato obligatorio")
     private String ci;
+    @NotBlank (message = "Dato obligatorio")
+    @Min(600000000)
+    @Max(799999999)
     private String telefono;
 
     public Integer getIdUsuario() {
