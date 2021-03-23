@@ -1,7 +1,7 @@
 -- tables
 -- Table: clientes
 CREATE TABLE clientes (
-    id_cliente int  NOT NULL,
+    id_cliente serial  NOT NULL,
     correo varchar(100)  NOT NULL,
     password varchar(100)  NOT NULL,
     estado int  NOT NULL,
@@ -15,14 +15,14 @@ CREATE TABLE clientes (
 
 -- Table: roles
 CREATE TABLE roles (
-    id_rol int  NOT NULL,
+    id_rol serial  NOT NULL,
     rol varchar(100)  NOT NULL,
     PRIMARY KEY (id_rol)
 );
 
 -- Table: usuarios
 CREATE TABLE usuarios (
-    id_usuario int  NOT NULL,
+    id_usuario serial  NOT NULL,
     id_rol int  NOT NULL,
     usuario varchar(100)  NOT NULL,
     password varchar(100)  NOT NULL,
