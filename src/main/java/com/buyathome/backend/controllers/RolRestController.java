@@ -3,10 +3,15 @@ package com.buyathome.backend.controllers;
 import com.buyathome.backend.models.entity.Rol;
 import com.buyathome.backend.models.services.IRolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -22,30 +27,90 @@ public class RolRestController {
     }
 
     @GetMapping("/roles/{idRol}")
-    public Rol show(@PathVariable int idRol){
-        return rolService.findById(idRol);
+    public ResponseEntity<?> show(@PathVariable Integer idRol) {
+
+        Rol rol;
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            rol = rolService.findById(idRol);
+        } catch (DataAccessException e){
+            response.put("mensaje", "Error al realizar la consulta en la base de datos");
+            response.put("error", Objects.requireNonNull(e.getMessage()).concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+
+        if(rol == null){
+            response.put("mensaje", "El rol con ID: ".concat(idRol.toString().concat(" no existe en la base de datos")));
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(rol, HttpStatus.OK);
     }
 
     @PostMapping("/roles")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Rol create(@RequestBody Rol rol){
-        return rolService.save(rol);
+    public ResponseEntity<?> create(@RequestBody Rol rol){
+        Rol rolNew;
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            rolNew = rolService.save(rol);
+        } catch (DataAccessException e){
+            response.put("mensaje", "Error al realizar el insert a la base de datos");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        response.put("mensaje", "El rol ha sido creado con exito");
+        response.put("rol", rolNew);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PutMapping("/roles/{idRol}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Rol update(@RequestBody Rol rol,@PathVariable int idRol){
+    public ResponseEntity<?> update(@RequestBody Rol rol, @PathVariable Integer idRol) {
 
         Rol rolActual = rolService.findById(idRol);
 
-        rolActual.setRol(rol.getRol());
+        Rol rolUpdated;
 
-        return rolService.save(rolActual);
+        Map<String, Object> response = new HashMap<>();
+
+        if (rolActual == null) {
+            response.put("mensaje", "Error: no se pudo editar, el rol con ID: ".concat(idRol.toString().concat(" no existe en la base de datos")));
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        try {
+            rolActual.setRol(rol.getRol());
+            rolUpdated = rolService.save(rolActual);
+
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al actualizar el rol en la base de datos");
+            response.put("error",e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("mensaje", "El rol ha sido actualizado con éxito");
+        response.put("rol", rolUpdated);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/roles/{idRol}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int idRol){
-        rolService.delete(idRol);
+    public ResponseEntity<?> delete(@PathVariable Integer idRol) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+
+            rolService.delete(idRol);
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al eliminar el rol de la base de datos");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        response.put("mensaje", "El rol ha sido eliminado con éxito");
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
