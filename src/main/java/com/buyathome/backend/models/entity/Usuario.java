@@ -22,25 +22,35 @@ public class Usuario implements Serializable {
     @Column(name = "id_rol")
     private Integer idRol;
 
-    @Pattern(regexp = "[a-z]+", message="El nombre de usuario solo puede contener letras minusculas")
+    @Column(name="usuario",unique=true)
+    @Pattern(regexp = "[A-Za-z1-9]+", message="Este campo puede contener letras")
     private String usuario;
+
+    @NotBlank(message="Dato obligatorio")
     @Size(min = 8, message="La contraseña debe tener 8 caracteres como minimo")
-    @Pattern(regexp = "^[a-zA-Z]\\w{3,14}$", message = "Debe contener letras seguidos de numeros")
     private String password;
+
     private Integer estado;
+
     @NotBlank(message="Dato obligatorio")
+    @Pattern(regexp = "[a-zA-Z]+", message="Este campo solo puede contener letras")
     private String nombres;
+
     @NotBlank(message="Dato obligatorio")
+    @Pattern(regexp = "[a-zA-Z]+", message="Este campo solo puede contener letras")
     private String apellidos;
+
     @Column(unique = true)
     @NotBlank
     @Email(message = "El correo electrónico debe ser válido")
     private String email;
+
     @NotBlank(message="Dato obligatorio")
     private String ci;
-    @NotBlank (message = "Dato obligatorio")
-    @Min(600000000)
-    @Max(799999999)
+
+    @NotBlank(message="Dato obligatorio")
+    @Pattern(regexp = "[0-9]+", message="Este campo solo puede contener números")
+    @Size(min = 8, message="Este campo debe tener 8 caracteres como minimo")
     private String telefono;
 
     public Integer getIdUsuario() {

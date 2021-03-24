@@ -22,24 +22,34 @@ public class Cliente implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCliente;
+
     @Column(unique = true)
     @NotBlank
     @Email(message = "El correo electrónico debe ser válido")
     private String correo;
+
     @Size(min = 8, message="La contraseña debe tener 8 caracteres como minimo")
-    @Pattern(regexp = "^[a-zA-Z]\\w{3,14}$", message = "Debe contener letras seguidos de numeros")
     private String password;
+
     private Integer estado;
+
     @NotBlank(message="Dato obligatorio")
+    @Pattern(regexp = "[a-zA-Z]+", message="Este campo solo puede contener letras")
     private String nombres;
+
     @NotBlank(message="Dato obligatorio")
+    @Pattern(regexp = "[a-zA-Z]+", message="Este campo solo puede contener letras")
     private String apellidos;
+
     @Pattern(regexp="^[0-9]{2}-[0-9]{2}-[0-9]{4}$",message="El formato de la fecha de nacimiento es incorrecto")
     private Date fechaNacimiento;
-    @NotBlank (message = "Dato obligatorio")
-    @Min(600000000)
-    @Max(799999999)
+
+
+    @NotBlank(message="Dato obligatorio")
+    @Pattern(regexp = "[0-9]+", message="Este campo solo puede contener números")
+    @Size(min = 8, message="Este campo debe tener 8 caracteres como minimo")
     private String telefono;
+
     @NotBlank(message = "Dato obligatorio")
     private String direccion;
 
