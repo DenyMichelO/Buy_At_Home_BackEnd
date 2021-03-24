@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -50,9 +53,20 @@ public class RolRestController {
     }
 
     @PostMapping("/roles")
-    public ResponseEntity<?> create(@RequestBody Rol rol){
+    public ResponseEntity<?> create(@Valid @RequestBody Rol rol, BindingResult result){
         Rol rolNew;
         Map<String, Object> response = new HashMap<>();
+
+        if(result.hasErrors()){
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> "Error en el campo '"+ err.getField()+"' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors",errors);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
 
         try {
             rolNew = rolService.save(rol);
@@ -67,13 +81,24 @@ public class RolRestController {
     }
 
     @PutMapping("/roles/{idRol}")
-    public ResponseEntity<?> update(@RequestBody Rol rol, @PathVariable Integer idRol) {
+    public ResponseEntity<?> update(@Valid @RequestBody Rol rol, BindingResult result, @PathVariable Integer idRol) {
 
         Rol rolActual = rolService.findById(idRol);
 
         Rol rolUpdated;
 
         Map<String, Object> response = new HashMap<>();
+
+        if(result.hasErrors()){
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> "Error en el campo '"+ err.getField()+"' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors",errors);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
 
         if (rolActual == null) {
             response.put("mensaje", "Error: no se pudo editar, el rol con ID: ".concat(idRol.toString().concat(" no existe en la base de datos")));

@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -49,9 +52,20 @@ public class UsuarioRestController {
     }
 
     @PostMapping("/usuarios")
-    public ResponseEntity<?> create(@RequestBody Usuario usuario){
+    public ResponseEntity<?> create(@Valid @RequestBody Usuario usuario, BindingResult result){
         Usuario usuarioNew;
         Map<String, Object> response = new HashMap<>();
+
+        if(result.hasErrors()){
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> "Error en el campo '"+ err.getField()+"' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors",errors);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
 
         try {
             usuarioNew = usuarioService.save(usuario);
@@ -66,13 +80,24 @@ public class UsuarioRestController {
     }
 
     @PutMapping("/usuarios/{idUsuario}")
-    public ResponseEntity<?> update(@RequestBody Usuario usuario, @PathVariable Integer idUsuario) {
+    public ResponseEntity<?> update(@Valid @RequestBody Usuario usuario, BindingResult result, @PathVariable Integer idUsuario) {
 
         Usuario usuarioActual = usuarioService.findById(idUsuario);
 
         Usuario usuarioUpdated;
 
         Map<String, Object> response = new HashMap<>();
+
+        if(result.hasErrors()){
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> "Error en el campo '"+ err.getField()+"' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors",errors);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
 
         if (usuarioActual == null) {
             response.put("mensaje", "Error: no se pudo editar, el usuario con ID: ".concat(idUsuario.toString().concat(" no existe en la base de datos")));

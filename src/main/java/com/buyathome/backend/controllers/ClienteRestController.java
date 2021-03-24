@@ -9,11 +9,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
@@ -53,9 +54,20 @@ public class ClienteRestController {
     }
 
     @PostMapping("/clientes")
-    public ResponseEntity<?> create(@RequestBody Cliente cliente){
+    public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result){
         Cliente clienteNew;
         Map<String, Object> response = new HashMap<>();
+
+        if(result.hasErrors()){
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> "Error en el campo '"+ err.getField()+"' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors",errors);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
 
         try {
             clienteNew = clienteService.save(cliente);
@@ -70,13 +82,24 @@ public class ClienteRestController {
     }
 
     @PutMapping("/clientes/{idCliente}")
-    public ResponseEntity<?> update(@RequestBody Cliente cliente, @PathVariable Integer idCliente) {
+    public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Integer idCliente) {
 
         Cliente clienteActual = clienteService.findById(idCliente);
 
         Cliente clienteUpdated;
 
         Map<String, Object> response = new HashMap<>();
+
+        if(result.hasErrors()){
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err -> "Error en el campo '"+ err.getField()+"' " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors",errors);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
 
         if (clienteActual == null) {
             response.put("mensaje", "Error: no se pudo editar, el cliente con ID: ".concat(idCliente.toString().concat(" no existe en la base de datos")));

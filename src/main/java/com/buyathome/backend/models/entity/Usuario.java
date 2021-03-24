@@ -5,8 +5,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -22,8 +20,9 @@ public class Usuario implements Serializable {
     @Column(name = "id_rol")
     private Integer idRol;
 
-    @Column(name="usuario",unique=true)
-    @Pattern(regexp = "[A-Za-z1-9]+", message="Este campo puede contener letras")
+
+    @Pattern(regexp = "[A-Za-z1-9]+", message="Este campo no puede contener caracteres especiales")
+    @Column(unique=true)
     private String usuario;
 
     @NotBlank(message="Dato obligatorio")
@@ -50,7 +49,7 @@ public class Usuario implements Serializable {
 
     @NotBlank(message="Dato obligatorio")
     @Pattern(regexp = "[0-9]+", message="Este campo solo puede contener números")
-    @Size(min = 8, message="Este campo debe tener 8 caracteres como minimo")
+    @Size(min = 8,max = 8, message="Este campo debe tener 8 caracteres como minimo")
     private String telefono;
 
     public Integer getIdUsuario() {

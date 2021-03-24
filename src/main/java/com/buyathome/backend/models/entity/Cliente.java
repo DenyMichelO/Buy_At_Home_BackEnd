@@ -5,11 +5,8 @@ package com.buyathome.backend.models.entity;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -47,7 +44,7 @@ public class Cliente implements Serializable {
 
     @NotBlank(message="Dato obligatorio")
     @Pattern(regexp = "[0-9]+", message="Este campo solo puede contener números")
-    @Size(min = 8, message="Este campo debe tener 8 caracteres como minimo")
+    @Size(min = 8, message="Este campo debe tener 8 numeros")
     private String telefono;
 
     @NotBlank(message = "Dato obligatorio")
