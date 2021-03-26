@@ -38,7 +38,7 @@ public class Cliente implements Serializable {
     @Pattern(regexp = "[a-zA-Z]+", message="Este campo solo puede contener letras")
     private String apellidos;
 
-    @Pattern(regexp="^[0-9]{2}-[0-9]{2}-[0-9]{4}$",message="El formato de la fecha de nacimiento es incorrecto")
+    //@Pattern(regexp="^[0-9]{4}-[0-9]{2}-[0-9]{2}$",message="El formato de la fecha de nacimiento es incorrecto")
     private Date fechaNacimiento;
 
 
