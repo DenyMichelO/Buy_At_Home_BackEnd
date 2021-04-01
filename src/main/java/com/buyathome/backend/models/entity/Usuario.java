@@ -17,19 +17,16 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
-    @Column(name = "id_rol")
-    private Integer idRol;
-
 
     @Pattern(regexp = "[A-Za-z1-9]+", message="Este campo no puede contener caracteres especiales")
     @Column(unique=true)
-    private String usuario;
+    private String username;
 
     @NotBlank(message="Dato obligatorio")
     @Size(min = 8, message="La contraseña debe tener 8 caracteres como minimo")
     private String password;
 
-    private Integer estado;
+    private Boolean estado;
 
     @NotBlank(message="Dato obligatorio")
     @Pattern(regexp = "[a-zA-Z]+", message="Este campo solo puede contener letras")
@@ -59,18 +56,12 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Integer getIdRol() {
-        return idRol;
-    }
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
+    public String getUsername() {
+        return username;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -80,10 +71,11 @@ public class Usuario implements Serializable {
         this.password = password;
     }
 
-    public Integer getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
-    public void setEstado(Integer estado) {
+
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

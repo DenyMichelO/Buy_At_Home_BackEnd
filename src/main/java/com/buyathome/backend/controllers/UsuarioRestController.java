@@ -106,8 +106,7 @@ public class UsuarioRestController {
 
         try {
 
-        usuarioActual.setIdRol(usuario.getIdRol());
-        usuarioActual.setUsuario(usuario.getUsuario());
+        usuarioActual.setUsername(usuario.getUsername());
         usuarioActual.setPassword(usuario.getPassword());
         usuarioActual.setNombres(usuario.getNombres());
         usuarioActual.setEstado(usuario.getEstado());
