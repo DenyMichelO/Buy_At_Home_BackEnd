@@ -28,7 +28,7 @@ public class Cliente implements Serializable {
     @Size(min = 8, message="La contraseña debe tener 8 caracteres como minimo")
     private String password;
 
-    private Integer estado;
+    private Boolean estado;
 
     @NotBlank(message="Dato obligatorio")
     @Pattern(regexp = "[a-zA-Z]+", message="Este campo solo puede contener letras")
@@ -71,10 +71,10 @@ public class Cliente implements Serializable {
         this.password = password;
     }
 
-    public Integer getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
-    public void setEstado(Integer estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -48,6 +49,12 @@ public class Usuario implements Serializable {
     @Pattern(regexp = "[0-9]+", message="Este campo solo puede contener números")
     @Size(min = 8,max = 8, message="Este campo debe tener 8 caracteres como minimo")
     private String telefono;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "roles_usuarios",joinColumns = @JoinColumn(name = "id_rol"),
+    inverseJoinColumns = @JoinColumn(name = "id_usuario"),
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"id_rol", "id_usuario"})})
+    private List<Rol> rols;
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -112,6 +119,14 @@ public class Usuario implements Serializable {
     }
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public List<Rol> getRols() {
+        return rols;
+    }
+
+    public void setRols(List<Rol> rols) {
+        this.rols = rols;
     }
 
     private static final long serialVersionUID = 1L;

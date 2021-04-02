@@ -3,7 +3,7 @@
 CREATE TABLE clientes (
     id_cliente serial  NOT NULL,
     correo varchar(100)  NOT NULL,
-    contraseña varchar(100)  NOT NULL,
+    password varchar(100)  NOT NULL,
     estado boolean  NOT NULL,
     nombres varchar(100)  NOT NULL,
     apellidos varchar(100)  NOT NULL,
@@ -39,6 +39,5 @@ CREATE TABLE roles_usuarios (
     	id_rol int  NOT NULL,
     	id_usuario int  NOT NULL,
 	foreign key (id_rol) references roles,
-	foreign key (id_usuario) references usuarios,
-    	PRIMARY KEY (id_rol,id_usuario)
+	foreign key (id_usuario) references usuarios
 );

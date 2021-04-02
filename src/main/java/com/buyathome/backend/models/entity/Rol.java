@@ -12,7 +12,9 @@ public class Rol implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idRol;
-    @NotEmpty(message = "Elegir un rol")
+
+    @NotEmpty(message = "Rol no puede ir vacio")
+
     private String rol;
 
     public Integer getIdRol() {
