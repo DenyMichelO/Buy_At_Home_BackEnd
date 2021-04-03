@@ -51,6 +51,7 @@ public class UsuarioRestController {
         return new ResponseEntity<>(usuario, HttpStatus.OK);
     }
 
+
     @PostMapping("/usuarios")
     public ResponseEntity<?> create(@Valid @RequestBody Usuario usuario, BindingResult result){
         Usuario usuarioNew;
@@ -78,6 +79,7 @@ public class UsuarioRestController {
         response.put("usuario", usuarioNew);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
 
     @PutMapping("/usuarios/{idUsuario}")
     public ResponseEntity<?> update(@Valid @RequestBody Usuario usuario, BindingResult result, @PathVariable Integer idUsuario) {
@@ -127,6 +129,7 @@ public class UsuarioRestController {
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
 
     @DeleteMapping("/usuarios/{idUsuario}")
     public ResponseEntity<?> delete(@PathVariable Integer idUsuario) {

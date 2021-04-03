@@ -37,4 +37,10 @@ public class UsuarioServiceImpl implements IUsuarioService{
     public void delete(int idUsuario) {
         usuarioDao.deleteById(idUsuario);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findByUsername(String username) {
+        return usuarioDao.findByUsername(username);
+    }
 }

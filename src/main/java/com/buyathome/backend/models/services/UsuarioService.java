@@ -17,11 +17,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UsuarioService implements UserDetailsService{
+public class UsuarioService implements IUsuarioService, UserDetailsService{
 
     private Logger logger = LoggerFactory.getLogger(UsuarioService.class);
 
-
+    @Autowired
+    private IUsuarioService usuarioService;
 
     @Autowired
     private IUsuarioDao usuarioDao;
@@ -44,5 +45,33 @@ public class UsuarioService implements UserDetailsService{
                 .collect(Collectors.toList());
 
         return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEstado(),true,true,true, authorities);
+    }
+
+    @Override
+    public List<Usuario> findAll() {
+        return usuarioService.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findById(int idUsuario) {
+        return usuarioDao.findById(idUsuario).orElse(null);
+    }
+
+
+    @Override
+    public Usuario save(Usuario usuario) {
+        return null;
+    }
+
+    @Override
+    public void delete(int idUsuario) {
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findByUsername(String username) {
+        return usuarioDao.findByUsername(username);
     }
 }
