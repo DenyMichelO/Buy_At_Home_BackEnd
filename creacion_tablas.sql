@@ -23,8 +23,8 @@ CREATE TABLE roles (
 -- Table: usuarios
 CREATE TABLE usuarios (
     id_usuario serial  NOT NULL,
-    username varchar(50)  NOT NULL,
-    password varchar(50)  NOT NULL,
+    username varchar(100)  NOT NULL,
+    password varchar(100)  NOT NULL,
     estado boolean  NOT NULL,
     nombres varchar(100)  NOT NULL,
     apellidos varchar(100)  NOT NULL,
