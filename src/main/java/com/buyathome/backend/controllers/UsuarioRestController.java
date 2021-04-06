@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class UsuarioRestController {
         return usuarioService.findAll();
     }
 
+    @Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS","ROLE_ENVIOS"})
     @GetMapping("/usuarios/{idUsuario}")
     public ResponseEntity<?> show(@PathVariable Integer idUsuario) {
 
@@ -52,6 +54,7 @@ public class UsuarioRestController {
     }
 
 
+    @Secured({"ROLE_ADMINISTRADOR"})
     @PostMapping("/usuarios")
     public ResponseEntity<?> create(@Valid @RequestBody Usuario usuario, BindingResult result){
         Usuario usuarioNew;
@@ -81,6 +84,7 @@ public class UsuarioRestController {
     }
 
 
+    @Secured({"ROLE_ADMINISTRADOR"})
     @PutMapping("/usuarios/{idUsuario}")
     public ResponseEntity<?> update(@Valid @RequestBody Usuario usuario, BindingResult result, @PathVariable Integer idUsuario) {
 
@@ -130,7 +134,7 @@ public class UsuarioRestController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-
+    @Secured({"ROLE_ADMINISTRADOR"})
     @DeleteMapping("/usuarios/{idUsuario}")
     public ResponseEntity<?> delete(@PathVariable Integer idUsuario) {
         Map<String, Object> response = new HashMap<>();

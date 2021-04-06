@@ -5,6 +5,7 @@ import com.buyathome.backend.models.services.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -30,6 +31,7 @@ public class ClienteRestController {
         return clienteService.findAll();
     }
 
+    @Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS","ROLE_ENVIOS"})
     @GetMapping("/clientes/{idCliente}")
     public ResponseEntity<?> show(@PathVariable Integer idCliente) {
 
@@ -53,6 +55,7 @@ public class ClienteRestController {
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_ADMINISTRADOR"})
     @PostMapping("/clientes")
     public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result){
         Cliente clienteNew;
@@ -81,6 +84,7 @@ public class ClienteRestController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+    @Secured({"ROLE_ADMINISTRADOR"})
     @PutMapping("/clientes/{idCliente}")
     public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Integer idCliente) {
 
@@ -129,17 +133,11 @@ public class ClienteRestController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
+
+    @Secured({"ROLE_ADMINISTRADOR"})
     @DeleteMapping("/clientes/{idCliente}")
-
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable int idCliente){
-        clienteService.delete(idCliente);
-    }
-    
-
     public ResponseEntity<?> delete(@PathVariable Integer idCliente) {
         Map<String, Object> response = new HashMap<>();
-
         try {
 
             clienteService.delete(idCliente);
