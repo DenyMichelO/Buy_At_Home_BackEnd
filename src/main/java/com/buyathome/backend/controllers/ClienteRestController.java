@@ -55,7 +55,6 @@ public class ClienteRestController {
         return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
-    @Secured({"ROLE_ADMINISTRADOR"})
     @PostMapping("/clientes")
     public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result){
         Cliente clienteNew;

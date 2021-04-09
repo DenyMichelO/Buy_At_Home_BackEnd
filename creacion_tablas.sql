@@ -17,7 +17,7 @@ CREATE TABLE clientes (
 CREATE TABLE roles (
     id_rol serial  NOT NULL,
     rol varchar(50)  NOT NULL,
-    CONSTRAINT roles_pk PRIMARY KEY (id_rol)
+    PRIMARY KEY (id_rol)
 );
 
 -- Table: usuarios
