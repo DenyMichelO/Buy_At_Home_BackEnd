@@ -41,3 +41,17 @@ CREATE TABLE roles_usuarios (
 	foreign key (id_rol) references roles,
 	foreign key (id_usuario) references usuarios
 );
+
+-- Table: product
+CREATE TABLE product (
+                         product_id serial,
+                         product_name varchar(100) NOT NULL,
+                         detail text NOT NULL,
+                         model varchar(100) NOT NULL,
+                         price numeric(12,6) NOT NULL,
+                         stock int NOT NULL,
+                         store_available int NOT NULL,
+                         delivery_available int NOT NULL,
+                         image text,
+                         PRIMARY KEY (product_id)
+);
