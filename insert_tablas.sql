@@ -7,7 +7,7 @@ insert into roles values
 insert into usuarios values(1,'admin','admin',1,'Administrador','Administrador','administrador@administrador.com',0,0);
 /*inser de la tabla clientes*/
 select*from clientes;
-INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('amet@enim.org','RQY12DDV7NE','1','Whilemina','Roach','23/07/02','+591-294-69-393','293 Eleifend Av.');
+INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('amet@enim.org','RQY12DDV7NE','1','Whilemina','Roach','23/07/2002','+591-294-69-393','293 Eleifend Av.');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('libero.Proin.mi@magnis.net','AAY38IHG6GS','0','Jack','Beach','03/21/1989','+591-111-103-231','722 Suspendisse Avenida');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('Integer.sem.elit@pedeblanditcongue.ca','AIO64XNU7RI','1','Giacomo','Sampson','01/06/1987','+591-991-147-583','Apartado núm.: 835, 3686 Sociosqu Av.');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('malesuada.fames@pulvinararcu.net','ZIG41TXT5AM','0','Bevis','Todd','03/12/1981','+591-460-400-021','5920 Ipsum. C/');
@@ -167,10 +167,10 @@ INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimient
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('adipiscing@hymenaeos.org','IJO73YAX7VX','1','Shelley','Vega','10/08/2006','+591-959-980-173','Apdo.:691-7001 Fringilla Ctra.');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('pede@tortornibh.net','YHJ42NRA3GP','1','Vivien','Suarez','02/01/1997','+591-857-549-957','156-8909 Eu, C.');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('Mauris.quis@eratvitae.com','IEY58GKZ8FM','0','Palmer','Kidd','08/08/2002','+591-750-639-442','Apartado núm.: 936, 7808 Tellus C.');
-INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('In@nibhvulputatemauris.co.uk','RLI30QBD4ND','1','Sierra','Trevino','12/31/2002','+591-198-801-926','263-9335 A Carretera');
-INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('lorem.eu.metus@molestieSed.ca','CEU18YRW3OK','1','Illiana','Sawyer','04/30/1979','+591-234-696-890','4876 Sociis C/');
-INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('ac.metus@malesuadaaugue.org','NZB79GGR7VQ','0','Devin','Walton','02/15/2006','+591-229-503-442','4823 Non, C/');
-INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('Nulla.semper@mattisIntegereu.org','LBU90ZWN0GG','1','Christopher','Nolan','12/27/1993','+591-549-211-081','3511 Nisi ');
+INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('In@nibhvulputatemauris.co.uk','RLI30QBD4ND','1','Sierra','Trevino','12/1/2002','+591-198-801-926','263-9335 A Carretera');
+INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('lorem.eu.metus@molestieSed.ca','CEU18YRW3OK','1','Illiana','Sawyer','04/0/1979','+591-234-696-890','4876 Sociis C/');
+INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('ac.metus@malesuadaaugue.org','NZB79GGR7VQ','0','Devin','Walton','02/1/6','+591-229-503-442','4823 Non, C/');
+INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('Nulla.semper@mattisIntegereu.org','LBU90ZWN0GG','1','Christopher','Nolan','12/2/1993','+591-549-211-081','3511 Nisi ');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('a@auctorMauris.ca','NAX22PTD6UP','0','Desirae','Kent','07/11/1980','+591-644-483-754','375-8163 Luctus Carretera');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('cursus@semper.com','KZH07RYM8GM','0','Lionel','Collins','06/09/1994','+591-151-940-210','Apartado núm.: 432, 4702 Accumsan Avda.');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('auctor.quis.tristique@Nunccommodo.org','TGE61LRG7TG','0','Hope','Duncan','08/08/2001','+591-342-356-405','Apdo.:599-5441 Duis Ctra.');

@@ -1,4 +1,4 @@
-package com.buyathome.backend.security.entity;
+package com.buyathome.backend.models.entity;
 
 
 
