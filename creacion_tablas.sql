@@ -44,14 +44,14 @@ CREATE TABLE roles_usuarios (
 
 -- Table: product
 CREATE TABLE product (
-                         product_id serial,
-                         product_name varchar(100) NOT NULL,
-                         detail text NOT NULL,
-                         model varchar(100) NOT NULL,
-                         price numeric(12,6) NOT NULL,
-                         stock int NOT NULL,
-                         store_available int NOT NULL,
-                         delivery_available int NOT NULL,
-                         image text,
-                         PRIMARY KEY (product_id)
+    product_id serial,
+    product_name varchar(100) NOT NULL,
+    detail text NOT NULL,
+    model varchar(100) NOT NULL,
+    price numeric(12,6) NOT NULL,
+    stock int NOT NULL,
+    store_available int NOT NULL,
+    delivery_available int NOT NULL,
+    image text,
+    PRIMARY KEY (product_id)
 );

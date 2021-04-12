@@ -113,6 +113,7 @@ public class ClienteRestController {
 
             clienteActual.setCorreo(cliente.getCorreo());
             clienteActual.setPassword(cliente.getPassword());
+            clienteActual.setEstado(cliente.getEstado());
             clienteActual.setNombres(cliente.getNombres());
             clienteActual.setApellidos(cliente.getApellidos());
             clienteActual.setFechaNacimiento(cliente.getFechaNacimiento());
