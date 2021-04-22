@@ -22,7 +22,7 @@ public class ProductoServiceImpl implements IProductoService {
 	@Transactional(readOnly = true)
 	public List<Producto> findAll() {
 
-		return (List<Producto>) productoDao.findAll();
+		return productoDao.findAll();
 	}
 
 	@Override

@@ -1,21 +1,9 @@
 package com.buyathome.backend.models.entity;
 
 
-
-import org.springframework.data.relational.core.sql.In;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import javax.validation.constraints.Size;
 
 
 @Entity

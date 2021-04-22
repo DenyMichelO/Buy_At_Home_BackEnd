@@ -80,10 +80,10 @@ public class ProductoRestController {
 
 		if(producto == null){
 			response.put("mensaje", "El Producto con ID: ".concat(productId.toString().concat(" no existe en la base de datos")));
-			return  new ResponseEntity<Map<String, Object> >(response, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 		}
 
-		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
+		return new ResponseEntity<>(producto, HttpStatus.OK);
 	}
 
 	@Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS"})
@@ -101,7 +101,7 @@ public class ProductoRestController {
 					.collect(Collectors.toList());
 
 			response.put("errors", errors);
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
 
 		try {
@@ -109,12 +109,12 @@ public class ProductoRestController {
 		} catch(DataAccessException e) {
 			response.put("mensaje", "Error al realizar el insert en la base de datos");
 			response.put("error", "No se completaron los espacios requeridos o introdujo datos erroneos");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		response.put("mensaje", "El producto ha sido creado con éxito!");
 		response.put("producto", productoNew);
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
 	@Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS"})
@@ -123,7 +123,7 @@ public class ProductoRestController {
 
 		Producto productoActual = productoService.findById(productId);
 
-		Producto productoUpdated = null;
+		Producto productoUpdated;
 
 		Map<String, Object> response = new HashMap<>();
 
@@ -135,13 +135,13 @@ public class ProductoRestController {
 					.collect(Collectors.toList());
 			
 			response.put("errors", errors);
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
 		}
 		
 		if (productoActual == null) {
 			response.put("mensaje", "Error: no se pudo editar, el producto con ID: "
 					.concat(productId.toString().concat(" no existe en la base de datos")));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 		}
 
 		try {
@@ -160,13 +160,13 @@ public class ProductoRestController {
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error al actualizar el producto en la base de datos");
 			response.put("error", "Los espacios requeridos no pueden estar vacios o introdujo datos erroneos");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 		response.put("mensaje", "El producto ha sido actualizado con éxito!");
 		response.put("producto", productoUpdated);
 
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
 	@Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS"})
@@ -185,12 +185,12 @@ public class ProductoRestController {
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error al eliminar el producto de la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		response.put("mensaje", "El producto ha sido eliminado con éxito");
 		
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS"})
@@ -202,14 +202,14 @@ public class ProductoRestController {
 		
 		if(!archivo.isEmpty()) {
 
-			String nombreArchivo = null;
+			String nombreArchivo;
 			
 			try {
 				nombreArchivo = uploadService.copiar(archivo);
 			} catch (IOException e) {
 				response.put("mensaje", "Error al subir la imagen del producto");
 				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
-				return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 			
 			String nombreImageAnterior = producto.getImage();
@@ -225,7 +225,7 @@ public class ProductoRestController {
 			
 		}
 		
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
 
@@ -243,6 +243,6 @@ public class ProductoRestController {
 		HttpHeaders cabecera = new HttpHeaders();
 		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"");
 		
-		return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
+		return new ResponseEntity<>(recurso, cabecera, HttpStatus.OK);
 	}
 }
