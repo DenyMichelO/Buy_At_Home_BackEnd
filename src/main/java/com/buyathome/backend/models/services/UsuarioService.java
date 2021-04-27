@@ -49,7 +49,7 @@ public class UsuarioService implements IUsuarioService, UserDetailsService{
 
     @Override
     public List<Usuario> findAll() {
-        return usuarioService.findAll();
+        return (List<Usuario>) usuarioDao.findAll();
     }
 
     @Override
@@ -61,11 +61,11 @@ public class UsuarioService implements IUsuarioService, UserDetailsService{
 
     @Override
     public Usuario save(Usuario usuario) {
-        return null;
+        return usuarioDao.save(usuario);
     }
 
     @Override
-    public void delete(int idUsuario) {
+    public void delete(int idUsuario) {usuarioDao.deleteById(idUsuario);
 
     }
 
