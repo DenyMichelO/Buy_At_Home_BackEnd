@@ -32,7 +32,6 @@ public class UsuarioRestController {
         return usuarioService.findAll();
     }
 
-    @Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS","ROLE_ENVIOS"})
     @GetMapping("/usuarios/page/{page}")
     public Page<Usuario> index(@PathVariable Integer page){
         Pageable pageable = PageRequest.of(page, 10);
