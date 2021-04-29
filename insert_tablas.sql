@@ -1,7 +1,7 @@
-insert into roles values 
-('administrador'),
-('personal de ventas'),
-('encargado de envios');
+insert into roles (rol) values
+('ROLE_ADMINISTRADROR'),
+('ROLE_VENTAS'),
+('ROLE_ENVIOS');
 
 
 insert into usuarios (username, password, estado, nombres, apellidos, email,ci,telefono) values

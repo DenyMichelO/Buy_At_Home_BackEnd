@@ -56,6 +56,7 @@ public class ProductoRestController {
 		return productoService.findAll();
 	}
 
+	@Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS","ROLE_ENVIOS"})
 	@GetMapping("/productos/page/{page}")
 	public Page<Producto> index(@PathVariable Integer page) {
 		Pageable pageable = PageRequest.of(page, 5);
