@@ -6,11 +6,13 @@ insert into roles (rol) values
 
 insert into usuarios (username, password, estado, nombres, apellidos, email,ci,telefono) values
 ('admin','$2a$10$gWCPSP9xPe2SoyuL47Hs5eAdI05Rra9uTEhjaHfUhrfXBBCY/ZMJi',true,'admin','admin','admin@admin.com','123456','12345678'),
-('venta','$2a$10$6lYpJTqIl/CzkFe6dw2nJ.X.dYFgL0iKWuOFt473Kxsw4QxVs/xf2',true,'venta','venta','venta@venta.com','123456','12345678');
+('venta','$2a$10$6lYpJTqIl/CzkFe6dw2nJ.X.dYFgL0iKWuOFt473Kxsw4QxVs/xf2',true,'venta','venta','venta@venta.com','123456','12345678'),
+('envio','$2a$10$6lYpJTqIl/CzkFe6dw2nJ.X.dYFgL0iKWuOFt473Kxsw4QxVs/xf2',true,'envio','envio','envio@envio.com','123456','12345678');
 
-insert into roles_usuarios values(1,1),(2,2);
 
-/*inser de la tabla clientes*/
+insert into roles_usuarios values(1,1),(2,2)(3,3);
+
+/*insert de la tabla clientes*/
 select*from clientes;
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('amet@enim.org','RQY12DDV7NE','1','Whilemina','Roach','23/07/2002','+591-294-69-393','293 Eleifend Av.');
 INSERT INTO "clientes" (correo,password,estado,nombres,apellidos,fecha_nacimiento,telefono,direccion) VALUES ('libero.Proin.mi@magnis.net','AAY38IHG6GS','0','Jack','Beach','03/21/1989','+591-111-103-231','722 Suspendisse Avenida');

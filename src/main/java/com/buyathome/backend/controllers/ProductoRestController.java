@@ -68,7 +68,7 @@ public class ProductoRestController {
 
 	@GetMapping("/productos/page/{page}")
 	public Page<Producto> index(@PathVariable Integer page) {
-		Pageable pageable = PageRequest.of(page, 10);
+		Pageable pageable = PageRequest.of(page, 20);
 		return productoService.findAll(pageable);
 	}
 
