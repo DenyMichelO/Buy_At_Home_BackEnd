@@ -244,7 +244,8 @@ public class ProductoRestController {
 
 			response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
 
-
+			Object system;
+			system.out.println:"nuevocommit";
 
 			/*try {
 				nombreArchivo = uploadService.copiar(archivo);

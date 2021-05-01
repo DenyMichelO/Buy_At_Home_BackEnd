@@ -40,4 +40,5 @@ public class JwtConfig {
             "oP/NywJkGe6NYmrWt2H2lmAHPd62UqrDfNbXgJZOVNJ4wVLe8UKsMXzukX1uuzrS\n" +
             "iQIDAQAB\n" +
             "-----END PUBLIC KEY-----";
+
 }

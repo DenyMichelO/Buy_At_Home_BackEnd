@@ -1,5 +1,5 @@
 insert into roles (rol) values
-('ROLE_ADMINISTRADROR'),
+('ROLE_ADMINISTRADOR'),
 ('ROLE_VENTAS'),
 ('ROLE_ENVIOS');
 
@@ -10,7 +10,7 @@ insert into usuarios (username, password, estado, nombres, apellidos, email,ci,t
 ('envio','$2a$10$6lYpJTqIl/CzkFe6dw2nJ.X.dYFgL0iKWuOFt473Kxsw4QxVs/xf2',true,'envio','envio','envio@envio.com','123456','12345678');
 
 
-insert into roles_usuarios values(1,1),(2,2)(3,3);
+insert into roles_usuarios values(1,1),(2,2),(3,3);
 
 /*insert de la tabla clientes*/
 select*from clientes;
