@@ -244,28 +244,6 @@ public class ProductoRestController {
 
 			response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
 
-			Object system;
-			system.out.println:"nuevocommit";
-
-			/*try {
-				nombreArchivo = uploadService.copiar(archivo);
-			} catch (IOException e) {
-				response.put("mensaje", "Error al subir la imagen del producto");
-				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
-				return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-			}
-			
-			String nombreImageAnterior = producto.getImage();
-			
-			uploadService.eliminar(nombreImageAnterior);
-						
-			producto.setImage(nombreArchivo);
-			
-			productoService.save(producto);
-			
-			response.put("producto", producto);
-			response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
-			*/
 		}
 		
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
