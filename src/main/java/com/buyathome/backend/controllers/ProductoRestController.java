@@ -58,9 +58,7 @@ public class ProductoRestController {
 
 	private final Logger log = LoggerFactory.getLogger(ProductoRestController.class);
 
-	@Autowired
-	private IUploadFileService uploadService;
-	
+
 	@GetMapping("/productos")
 	public List<Producto> index() {
 		return productoService.findAll();
