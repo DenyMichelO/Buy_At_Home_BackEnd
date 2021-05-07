@@ -1,9 +1,9 @@
 package com.buyathome.backend.dao;
 
-import bo.ucb.edu.ingsoft.dto.*;
-import bo.ucb.edu.ingsoft.model.Brand;
-import bo.ucb.edu.ingsoft.model.Product;
-import bo.ucb.edu.ingsoft.model.Tag;
+import com.buyathome.backend.dto.*;
+import com.buyathome.backend.model.Brand;
+import com.buyathome.backend.model.Product;
+import com.buyathome.backend.model.Tag;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
