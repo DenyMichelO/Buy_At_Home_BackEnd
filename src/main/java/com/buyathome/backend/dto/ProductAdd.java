@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 
 public class ProductAdd {
     private Integer brandId;
-    @NotEmpty(message = "el campo no debe estar vacio")
+    //@NotEmpty(message = "el campo no debe estar vacio")
     private String productName;
     private Integer tagId;
-    @NotEmpty(message = "el campo no debe estar vacio")
+    //@NotEmpty(message = "el campo no debe estar vacio")
     private String detail;
-    @NotEmpty(message = "el campo no debe estar vacio")
+    //@NotEmpty(message = "el campo no debe estar vacio")
     private String model;
     @NotNull(message = "el campo no debe estar vacio")
     @Min(value = 1)
@@ -20,13 +20,13 @@ public class ProductAdd {
     @NotNull(message = "el campo no debe estar vacio")
     @Min(value = 1)
     private Integer stock;
-    @NotEmpty(message = "el campo no debe estar vacio")
+    //@NotEmpty(message = "el campo no debe estar vacio")
     private String description;
     @NotNull(message = "debe seleccionar una opcion")
     private Boolean storeAvailable;
     @NotNull(message = "debe seleccionar una opcion")
     private Boolean deliveryAvailable;
-    @NotEmpty(message = "el campo no debe estar vacio")
+    //@NotEmpty(message = "el campo no debe estar vacio")
     private String image;
 
     public Integer getBrandId() {

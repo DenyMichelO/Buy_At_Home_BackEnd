@@ -1,9 +1,9 @@
 package com.buyathome.backend.dao;
 
-import bo.ucb.edu.ingsoft.dto.CartGet;
-import bo.ucb.edu.ingsoft.dto.CartGetDetail;
-import bo.ucb.edu.ingsoft.model.Cart;
-import bo.ucb.edu.ingsoft.model.CartDetail;
+import com.buyathome.backend.dto.CartGet;
+import com.buyathome.backend.dto.CartGetDetail;
+import com.buyathome.backend.model.Cart;
+import com.buyathome.backend.model.CartDetail;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
