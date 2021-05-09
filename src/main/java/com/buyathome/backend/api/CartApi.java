@@ -1,7 +1,7 @@
 package com.buyathome.backend.api;
 
-import bo.ucb.edu.ingsoft.bl.CartBl;
-import bo.ucb.edu.ingsoft.bl.TransactionBl;
+import com.buyathome.backend.bl.CartBl;
+import com.buyathome.backend.bl.TransactionBl;
 import com.buyathome.backend.dto.*;
 import com.buyathome.backend.model.*;
 import bo.ucb.edu.ingsoft.util.TransactionUtil;
