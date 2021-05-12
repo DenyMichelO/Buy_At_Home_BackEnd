@@ -17,7 +17,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.codmind.swaggerapi.controllers"))
+                .apis(RequestHandlerSelectors.basePackage("com.buyathome.backend.controllers"))
                 .paths(PathSelectors.any())
                 .build();
     }
