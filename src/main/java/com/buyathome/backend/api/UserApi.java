@@ -5,7 +5,6 @@ import com.buyathome.backend.util.TransactionUtil;
 
 import com.buyathome.backend.model.User;
 import com.buyathome.backend.model.Address;
-import com.buyathome.backend.model.Order;
 
 import com.buyathome.backend.bl.UserBl;
 import com.buyathome.backend.bl.TransactionBl;

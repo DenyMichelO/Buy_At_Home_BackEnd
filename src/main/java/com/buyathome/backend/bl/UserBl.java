@@ -7,7 +7,6 @@ import com.buyathome.backend.dao.AddressDao;
 import com.buyathome.backend.dto.*;
 
 import com.buyathome.backend.model.User;
-import com.buyathome.backend.model.Order;
 import com.buyathome.backend.model.Address;
 
 import org.springframework.beans.factory.annotation.Autowired;

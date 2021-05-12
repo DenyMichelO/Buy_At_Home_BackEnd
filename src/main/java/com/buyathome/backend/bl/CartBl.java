@@ -6,7 +6,7 @@ import com.buyathome.backend.dto.*;
 import com.buyathome.backend.model.Cart;
 import com.buyathome.backend.model.CartDetail;
 import com.buyathome.backend.model.Product;
-import org.apache.catalina.LifecycleState;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

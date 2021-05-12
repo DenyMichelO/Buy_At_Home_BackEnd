@@ -1,7 +1,5 @@
 package com.buyathome.backend.dto;
 
-import org.springframework.format.annotation.NumberFormat;
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

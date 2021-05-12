@@ -1,9 +1,7 @@
 package com.buyathome.backend.dao;
 
 import com.buyathome.backend.dto.*;
-import com.buyathome.backend.model.Brand;
 import com.buyathome.backend.model.Product;
-import com.buyathome.backend.model.Tag;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

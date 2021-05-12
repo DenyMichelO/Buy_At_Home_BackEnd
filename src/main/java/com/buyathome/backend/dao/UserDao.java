@@ -5,7 +5,6 @@ import com.buyathome.backend.dto.UserOrderGet;
 import com.buyathome.backend.model.User;
 import com.buyathome.backend.dto.UserGet;
 import com.buyathome.backend.dto.NieghbourGet;
-import com.buyathome.backend.model.Order;
 
 import org.apache.ibatis.annotations.Mapper;
 
