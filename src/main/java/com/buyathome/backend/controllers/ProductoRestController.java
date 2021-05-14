@@ -86,7 +86,7 @@ public class ProductoRestController {
 		return new ResponseEntity<>(producto, HttpStatus.OK);
 	}
 
-	@Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS"})
+	
 	@PostMapping("/productos")
 	public ResponseEntity<?> create(@Valid @RequestBody Producto producto, BindingResult result) {
 
