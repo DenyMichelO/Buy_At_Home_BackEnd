@@ -1,19 +1,27 @@
 package com.buyathome.backend.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 
 import javax.validation.Valid;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -48,6 +56,8 @@ public class ProductoRestController {
 	@Autowired
 	private IProductoService productoService;
 
+	private final Logger log = LoggerFactory.getLogger(ProductoRestController.class);
+
 	@Autowired
 	private IUploadFileService uploadService;
 	
@@ -58,7 +68,7 @@ public class ProductoRestController {
 
 	@GetMapping("/productos/page/{page}")
 	public Page<Producto> index(@PathVariable Integer page) {
-		Pageable pageable = PageRequest.of(page, 5);
+		Pageable pageable = PageRequest.of(page, 20);
 		return productoService.findAll(pageable);
 	}
 
@@ -169,7 +179,8 @@ public class ProductoRestController {
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 
-	@Secured({"ROLE_ADMINISTRADOR","ROLE_VENTAS"})
+
+	@Secured({"ROLE_ADMINISTRADOR"})
 	@DeleteMapping("/productos/{productId}")
 	public ResponseEntity<?> delete(@PathVariable Integer productId) {
 		
@@ -178,10 +189,14 @@ public class ProductoRestController {
 		try {
 			Producto producto = productoService.findById(productId);
 			String nombreImageAnterior = producto.getImage();
-			
-			uploadService.eliminar(nombreImageAnterior);
-			
-		    productoService.delete(productId);
+
+			if(nombreImageAnterior!=null && nombreImageAnterior.length()>0){
+				Path rutaImageAnterior = Paths.get("uploads").resolve(nombreImageAnterior).toAbsolutePath();
+				File archivoImageAnterior = rutaImageAnterior.toFile();
+				if(archivoImageAnterior.exists() && archivoImageAnterior.canRead()){
+					archivoImageAnterior.delete();
+				}
+			}
 		} catch (DataAccessException e) {
 			response.put("mensaje", "Error al eliminar el producto de la base de datos");
 			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -202,27 +217,33 @@ public class ProductoRestController {
 		
 		if(!archivo.isEmpty()) {
 
-			String nombreArchivo;
-			
+			String nombreArchivo = UUID.randomUUID().toString()+ "_" + archivo.getOriginalFilename().replace(" ","");
+			Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
+			log.info(rutaArchivo.toString());
+
 			try {
-				nombreArchivo = uploadService.copiar(archivo);
+				Files.copy(archivo.getInputStream(), rutaArchivo);
 			} catch (IOException e) {
-				response.put("mensaje", "Error al subir la imagen del producto");
+				response.put("mensaje", "Error al subir la imagen del producto"+ nombreArchivo);
 				response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
 				return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			
+
 			String nombreImageAnterior = producto.getImage();
-			
-			uploadService.eliminar(nombreImageAnterior);
-						
+			if(nombreImageAnterior!=null && nombreImageAnterior.length()>0){
+				Path rutaImageAnterior = Paths.get("uploads").resolve(nombreImageAnterior).toAbsolutePath();
+				File archivoImageAnterior = rutaImageAnterior.toFile();
+				if(archivoImageAnterior.exists() && archivoImageAnterior.canRead()){
+					archivoImageAnterior.delete();
+				}
+			}
+
 			producto.setImage(nombreArchivo);
-			
+
 			productoService.save(producto);
-			
-			response.put("producto", producto);
+
 			response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
-			
+
 		}
 		
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -231,15 +252,20 @@ public class ProductoRestController {
 
 	@GetMapping("/uploads/img/{nombreImage:.+}")
 	public ResponseEntity<Resource> verImage(@PathVariable String nombreImage){
+		Path rutaArchivo = Paths.get("uploads").resolve(nombreImage).toAbsolutePath();
+		log.info(rutaArchivo.toString());
 
 		Resource recurso = null;
 		
 		try {
-			recurso = uploadService.cargar(nombreImage);
+			recurso = new UrlResource(rutaArchivo.toUri());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		
+
+		if(!recurso.exists() && !recurso.isReadable()){
+			throw new RuntimeException("Error no se pudo cargar la imagen: "+ nombreImage);
+		}
 		HttpHeaders cabecera = new HttpHeaders();
 		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"");
 		
