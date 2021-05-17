@@ -1,7 +1,7 @@
 package com.buyathome.backend.bl;
 
 import com.buyathome.backend.dao.AddressDao;
-//import com.buyathome.backend.dao.OrderDao;
+import com.buyathome.backend.dao.OrderDao;
 import com.buyathome.backend.dao.TransactionDao;
 import com.buyathome.backend.dto.*;
 import com.buyathome.backend.model.Address;
@@ -17,7 +17,7 @@ import java.util.Date;
 
 @Service
 public class OrderBl {
-   /* private OrderDao orderDao;
+    private OrderDao orderDao;
     private TransactionDao transactionDao;
     private AddressDao addressDao;
     private static final Logger LOGGER= LoggerFactory.getLogger(OrderBl.class);
@@ -28,7 +28,7 @@ public class OrderBl {
         this.transactionDao = transactionDao;
         this.addressDao = addressDao;
     }
-    public Order updateOrderState (Order order, OrderState orderState, Transaction transaction, Integer orderId){
+    /*public Order updateOrderState (Order order, OrderState orderState, Transaction transaction, Integer orderId){
         order.setState(orderState.getState());
         order.setOrderId(orderId);
         order.setTxDate(transaction.getTxDate());

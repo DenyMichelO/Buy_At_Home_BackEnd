@@ -21,9 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = "/orders")
 public class OrderApi {
     private TransactionBl transactionBl;
-    //private OrderBl orderBl;
+    private OrderBl orderBl;
 
-   /* @Autowired
+    @Autowired
     public OrderApi(TransactionBl transactionBl, OrderBl orderBl){
         this.orderBl = orderBl;
         this.transactionBl = transactionBl;
