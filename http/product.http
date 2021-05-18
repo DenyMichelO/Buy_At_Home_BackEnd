@@ -1,0 +1,13 @@
+POST http://localhost:8080/api/productos
+Accept: application/json
+Content-Type: application/json
+
+{
+  "productName": "asdsafda",
+  "detail": "asdfg",
+  "model": "asdsadasd",
+  "price": 1.00,
+  "stock": 1,
+  "storeAvailable": 1,
+  "deliveryAvailable": 1
+}
