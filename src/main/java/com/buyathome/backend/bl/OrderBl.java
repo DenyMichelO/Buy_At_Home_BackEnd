@@ -28,7 +28,7 @@ public class OrderBl {
         this.transactionDao = transactionDao;
         this.addressDao = addressDao;
     }
-    /*public Order updateOrderState (Order order, OrderState orderState, Transaction transaction, Integer orderId){
+    public Order updateOrderState (Order order, OrderState orderState, Transaction transaction, Integer orderId){
         order.setState(orderState.getState());
         order.setOrderId(orderId);
         order.setTxDate(transaction.getTxDate());
@@ -81,6 +81,6 @@ public class OrderBl {
 
         return orderAdd;
 
-    }*/
+    }
 }
 
